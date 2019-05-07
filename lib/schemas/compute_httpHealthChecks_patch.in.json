@@ -1,0 +1,95 @@
+{
+    "type": "object",
+    "properties": {
+        "httpHealthCheck": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An HttpHealthCheck resource. This resource defines a template for how individual instances should be checked for health, via HTTP.",
+            "properties": {
+                "checkIntervalSec": {
+                    "description": "How often (in seconds) to send a health check. The default value is 5 seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "healthyThreshold": {
+                    "description": "A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "host": {
+                    "description": "The value of the host header in the HTTP health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#httpHealthCheck",
+                    "description": "[Output Only] Type of the resource. Always compute#httpHealthCheck for HTTP health checks.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "The TCP port number for the HTTP health check request. The default value is 80.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "requestPath": {
+                    "description": "The request path of the HTTP health check request. The default value is /.",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "timeoutSec": {
+                    "description": "How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "unhealthyThreshold": {
+                    "description": "A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

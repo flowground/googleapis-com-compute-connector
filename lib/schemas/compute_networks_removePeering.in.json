@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "network": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "name": {
+                    "description": "Name of the peering, which should conform to RFC1035.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

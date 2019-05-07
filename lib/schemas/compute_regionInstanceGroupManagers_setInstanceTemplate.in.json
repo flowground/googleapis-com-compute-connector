@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "instanceGroupManager": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "region": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "instanceTemplate": {
+                    "description": "URL of the InstanceTemplate resource from which all new instances will be created.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

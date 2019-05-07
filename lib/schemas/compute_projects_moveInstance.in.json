@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "destinationZone": {
+                    "description": "The URL of the destination zone to move the instance. This can be a full or partial URL. For example, the following are all valid URLs to a zone:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone \n- projects/project/zones/zone \n- zones/zone",
+                    "type": "string"
+                },
+                "targetInstance": {
+                    "description": "The URL of the target instance to move. This can be a full or partial URL. For example, the following are all valid URLs to an instance:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance \n- projects/project/zones/zone/instances/instance \n- zones/zone/instances/instance",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

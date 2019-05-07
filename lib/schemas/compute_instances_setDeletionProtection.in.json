@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "deletionProtection": {
+            "type": "boolean",
+            "default": true
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "resource": {
+            "required": true,
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        }
+    }
+}

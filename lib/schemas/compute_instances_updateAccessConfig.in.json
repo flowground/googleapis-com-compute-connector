@@ -1,0 +1,73 @@
+{
+    "type": "object",
+    "properties": {
+        "instance": {
+            "required": true,
+            "type": "string"
+        },
+        "networkInterface": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An access configuration attached to an instance's network interface. Only one access config per instance is supported.",
+            "properties": {
+                "kind": {
+                    "default": "compute#accessConfig",
+                    "description": "[Output Only] Type of the resource. Always compute#accessConfig for access configs.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.",
+                    "type": "string"
+                },
+                "natIP": {
+                    "description": "An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.",
+                    "type": "string"
+                },
+                "networkTier": {
+                    "description": "This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.\n\nIf an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.\n\nIf an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.",
+                    "enum": [
+                        "PREMIUM",
+                        "STANDARD"
+                    ],
+                    "type": "string"
+                },
+                "publicPtrDomainName": {
+                    "description": "The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.",
+                    "type": "string"
+                },
+                "setPublicPtr": {
+                    "description": "Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "default": "ONE_TO_ONE_NAT",
+                    "description": "The type of configuration. The default and only option is ONE_TO_ONE_NAT.",
+                    "enum": [
+                        "ONE_TO_ONE_NAT"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

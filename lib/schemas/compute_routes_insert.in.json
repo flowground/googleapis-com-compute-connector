@@ -1,0 +1,164 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a Route resource. A route specifies how certain packets should be handled by the network. Routes are associated with instances by tags and the set of routes for a particular instance is called its routing table.\n\nFor each packet leaving an instance, the system searches that instance's routing table for a single best matching route. Routes match packets by destination IP address, preferring smaller or more specific ranges over larger ones. If there is a tie, the system selects the route with the smallest priority value. If there is still a tie, it uses the layer three and four packet headers to select just one of the remaining matching routes. The packet is then forwarded as specified by the nextHop field of the winning route - either to another instance destination, an instance gateway, or a Google Compute Engine-operated gateway.\n\nPackets that do not match any route in the sending instance's routing table are dropped. (== resource_for beta.routes ==) (== resource_for v1.routes ==)",
+            "properties": {
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "destRange": {
+                    "description": "The destination range of outgoing packets that this route applies to. Only IPv4 is supported.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#route",
+                    "description": "[Output Only] Type of this resource. Always compute#routes for Route resources.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Fully-qualified URL of the network that this route applies to.",
+                    "type": "string"
+                },
+                "nextHopGateway": {
+                    "description": "The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/<project-id>/global/gateways/default-internet-gateway",
+                    "type": "string"
+                },
+                "nextHopInstance": {
+                    "description": "The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:\nhttps://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/",
+                    "type": "string"
+                },
+                "nextHopIp": {
+                    "description": "The network IP address of an instance that should handle matching packets. Only IPv4 is supported.",
+                    "type": "string"
+                },
+                "nextHopNetwork": {
+                    "description": "The URL of the local network if it should handle matching packets.",
+                    "type": "string"
+                },
+                "nextHopPeering": {
+                    "description": "[Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.",
+                    "type": "string"
+                },
+                "nextHopVpnTunnel": {
+                    "description": "The URL to a VpnTunnel that should handle matching packets.",
+                    "type": "string"
+                },
+                "priority": {
+                    "description": "The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.",
+                    "format": "uint32",
+                    "type": "integer"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined fully-qualified URL for this resource.",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "A list of instance tags to which this route applies.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "warnings": {
+                    "description": "[Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.",
+                    "items": {
+                        "properties": {
+                            "code": {
+                                "description": "[Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.",
+                                "enum": [
+                                    "CLEANUP_FAILED",
+                                    "DEPRECATED_RESOURCE_USED",
+                                    "DEPRECATED_TYPE_USED",
+                                    "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                                    "EXPERIMENTAL_TYPE_USED",
+                                    "EXTERNAL_API_WARNING",
+                                    "FIELD_VALUE_OVERRIDEN",
+                                    "INJECTED_KERNELS_DEPRECATED",
+                                    "MISSING_TYPE_DEPENDENCY",
+                                    "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                                    "NEXT_HOP_CANNOT_IP_FORWARD",
+                                    "NEXT_HOP_INSTANCE_NOT_FOUND",
+                                    "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                                    "NEXT_HOP_NOT_RUNNING",
+                                    "NOT_CRITICAL_ERROR",
+                                    "NO_RESULTS_ON_PAGE",
+                                    "REQUIRED_TOS_AGREEMENT",
+                                    "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                                    "RESOURCE_NOT_DELETED",
+                                    "SCHEMA_VALIDATION_IGNORED",
+                                    "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                                    "UNDECLARED_PROPERTIES",
+                                    "UNREACHABLE"
+                                ],
+                                "type": "string"
+                            },
+                            "data": {
+                                "description": "[Output Only] Metadata about this warning in key: value format. For example:\n\"data\": [ { \"key\": \"scope\", \"value\": \"zones/us-east1-d\" }",
+                                "items": {
+                                    "properties": {
+                                        "key": {
+                                            "description": "[Output Only] A key that provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement, or a warning about invalid network settings (for example, if an instance attempts to perform IP forwarding but is not enabled for IP forwarding).",
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "description": "[Output Only] A warning data value corresponding to the key.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "message": {
+                                "description": "[Output Only] A human-readable description of the warning code.",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

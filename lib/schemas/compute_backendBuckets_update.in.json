@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "properties": {
+        "backendBucket": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A BackendBucket resource. This resource defines a Cloud Storage bucket.",
+            "properties": {
+                "bucketName": {
+                    "description": "Cloud Storage bucket name.",
+                    "type": "string"
+                },
+                "cdnPolicy": {
+                    "description": "Cloud CDN configuration for this BackendBucket.",
+                    "properties": {
+                        "signedUrlCacheMaxAgeSec": {
+                            "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "signedUrlKeyNames": {
+                            "description": "[Output Only] Names of the keys for signing request URLs.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional textual description of the resource; provided by the client when the resource is created.",
+                    "type": "string"
+                },
+                "enableCdn": {
+                    "description": "If true, enable Cloud CDN for this BackendBucket.",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#backendBucket",
+                    "description": "Type of the resource.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

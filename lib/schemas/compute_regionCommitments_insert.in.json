@@ -1,0 +1,121 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "region": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a Commitment resource. Creating a Commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts.\n\nCommitted use discounts are subject to Google Cloud Platform's Service Specific Terms. By purchasing a committed use discount, you agree to these terms. Committed use discounts will not renew, so you must purchase a new commitment to continue receiving discounts. (== resource_for beta.commitments ==) (== resource_for v1.commitments ==)",
+            "properties": {
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "endTimestamp": {
+                    "description": "[Output Only] Commitment end time in RFC3339 text format.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#commitment",
+                    "description": "[Output Only] Type of the resource. Always compute#commitment for commitments.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "plan": {
+                    "description": "The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).",
+                    "enum": [
+                        "INVALID",
+                        "THIRTY_SIX_MONTH",
+                        "TWELVE_MONTH"
+                    ],
+                    "type": "string"
+                },
+                "region": {
+                    "description": "[Output Only] URL of the region where this commitment may be used.",
+                    "type": "string"
+                },
+                "resources": {
+                    "description": "A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.",
+                    "items": {
+                        "description": "Commitment for a particular resource (a Commitment is composed of one or more of these).",
+                        "properties": {
+                            "amount": {
+                                "description": "The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.",
+                                "format": "int64",
+                                "type": "string"
+                            },
+                            "type": {
+                                "description": "Type of resource for which this commitment applies. Possible values are VCPU and MEMORY",
+                                "enum": [
+                                    "MEMORY",
+                                    "UNSPECIFIED",
+                                    "VCPU"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "startTimestamp": {
+                    "description": "[Output Only] Commitment start time in RFC3339 text format.",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "[Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.",
+                    "enum": [
+                        "ACTIVE",
+                        "CREATING",
+                        "EXPIRED",
+                        "NOT_YET_ACTIVE"
+                    ],
+                    "type": "string"
+                },
+                "statusMessage": {
+                    "description": "[Output Only] An optional, human-readable explanation of the status.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

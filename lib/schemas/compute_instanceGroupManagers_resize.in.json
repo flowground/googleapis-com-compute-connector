@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "instanceGroupManager": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "size": {
+            "required": true,
+            "type": "integer"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        }
+    }
+}

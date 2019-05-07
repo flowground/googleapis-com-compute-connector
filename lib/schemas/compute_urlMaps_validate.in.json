@@ -1,0 +1,170 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "urlMap": {
+            "required": true,
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "resource": {
+                    "description": "Content of the UrlMap to be validated.",
+                    "properties": {
+                        "creationTimestamp": {
+                            "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                            "type": "string"
+                        },
+                        "defaultService": {
+                            "description": "The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified.\nOnly one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.",
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "An optional description of this resource. Provide this property when you create the resource.",
+                            "type": "string"
+                        },
+                        "fingerprint": {
+                            "description": "Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to retrieve a UrlMap.",
+                            "format": "byte",
+                            "type": "string"
+                        },
+                        "hostRules": {
+                            "description": "The list of HostRules to use against the URL.",
+                            "items": {
+                                "description": "UrlMaps A host-matching rule for a URL. If matched, will use the named PathMatcher to select the BackendService.",
+                                "properties": {
+                                    "description": {
+                                        "description": "An optional description of this resource. Provide this property when you create the resource.",
+                                        "type": "string"
+                                    },
+                                    "hosts": {
+                                        "description": "The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "pathMatcher": {
+                                        "description": "The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "id": {
+                            "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                            "format": "uint64",
+                            "type": "string"
+                        },
+                        "kind": {
+                            "default": "compute#urlMap",
+                            "description": "[Output Only] Type of the resource. Always compute#urlMaps for url maps.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                            "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                            "type": "string"
+                        },
+                        "pathMatchers": {
+                            "description": "The list of named PathMatchers to use against the URL.",
+                            "items": {
+                                "description": "A matcher for the path portion of the URL. The BackendService from the longest-matched rule will serve the URL. If no rule was matched, the default service will be used.",
+                                "properties": {
+                                    "defaultService": {
+                                        "description": "The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource:  \n- https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService \n- compute/v1/projects/project/global/backendServices/backendService \n- global/backendServices/backendService  If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified.\nOnly one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.\nAuthorization requires one or more of the following Google IAM permissions on the specified resource default_service:  \n- compute.backendBuckets.use \n- compute.backendServices.use",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "An optional description of this resource. Provide this property when you create the resource.",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "The name to which this PathMatcher is referred by the HostRule.",
+                                        "type": "string"
+                                    },
+                                    "pathRules": {
+                                        "description": "The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that's required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis.\nFor example: a pathRule with a path /a/b/c/* will match before /a/b/* irrespective of the order in which those paths appear in this list.\nOnly one of pathRules or routeRules must be set.",
+                                        "items": {
+                                            "description": "A path-matching rule for a URL. If matched, will use the specified BackendService to handle the traffic arriving at this URL.",
+                                            "properties": {
+                                                "paths": {
+                                                    "description": "The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.",
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "service": {
+                                                    "description": "The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.\nOnly one of urlRedirect, service or routeAction.weightedBackendService must be set.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "selfLink": {
+                            "description": "[Output Only] Server-defined URL for the resource.",
+                            "type": "string"
+                        },
+                        "tests": {
+                            "description": "The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.",
+                            "items": {
+                                "description": "Message for the expected URL mappings.",
+                                "properties": {
+                                    "description": {
+                                        "description": "Description of this test case.",
+                                        "type": "string"
+                                    },
+                                    "host": {
+                                        "description": "Host portion of the URL.",
+                                        "type": "string"
+                                    },
+                                    "path": {
+                                        "description": "Path portion of the URL.",
+                                        "type": "string"
+                                    },
+                                    "service": {
+                                        "description": "Expected BackendService resource the given URL should be mapped to.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

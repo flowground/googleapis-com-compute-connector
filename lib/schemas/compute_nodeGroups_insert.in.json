@@ -1,0 +1,84 @@
+{
+    "type": "object",
+    "properties": {
+        "initialNodeCount": {
+            "required": true,
+            "type": "integer"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A NodeGroup resource.",
+            "properties": {
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#nodeGroup",
+                    "description": "[Output Only] The type of the resource. Always compute#nodeGroup for node group.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "type": "string"
+                },
+                "nodeTemplate": {
+                    "description": "The URL of the node template to which this node group belongs.",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "[Output Only] The total number of nodes in the node group.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "status": {
+                    "enum": [
+                        "CREATING",
+                        "DELETING",
+                        "INVALID",
+                        "READY"
+                    ],
+                    "type": "string"
+                },
+                "zone": {
+                    "description": "[Output Only] The name of the zone where the node group resides, such as us-central1-a.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

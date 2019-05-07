@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "targetHttpsProxy": {
+            "required": true,
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "sslPolicy": {
+                    "description": "URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with the target proxy resource.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

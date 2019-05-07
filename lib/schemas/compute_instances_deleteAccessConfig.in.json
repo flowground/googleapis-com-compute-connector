@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "accessConfig": {
+            "required": true,
+            "type": "string"
+        },
+        "instance": {
+            "required": true,
+            "type": "string"
+        },
+        "networkInterface": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        }
+    }
+}

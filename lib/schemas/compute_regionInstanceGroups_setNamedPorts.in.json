@@ -1,0 +1,59 @@
+{
+    "type": "object",
+    "properties": {
+        "instanceGroup": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "region": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "fingerprint": {
+                    "description": "The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.",
+                    "format": "byte",
+                    "type": "string"
+                },
+                "namedPorts": {
+                    "description": "The list of named ports to set for this instance group.",
+                    "items": {
+                        "description": "The named port. For example: .",
+                        "properties": {
+                            "name": {
+                                "description": "The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.",
+                                "type": "string"
+                            },
+                            "port": {
+                                "description": "The port number, which can be a value between 1 and 65535.",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

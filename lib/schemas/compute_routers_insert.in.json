@@ -1,0 +1,328 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "region": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Router resource.",
+            "properties": {
+                "bgp": {
+                    "description": "BGP information specific to this router.",
+                    "properties": {
+                        "advertiseMode": {
+                            "description": "User-specified flag to indicate which mode to use for advertisement.",
+                            "enum": [
+                                "CUSTOM",
+                                "DEFAULT"
+                            ],
+                            "type": "string"
+                        },
+                        "advertisedGroups": {
+                            "description": "User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.",
+                            "items": {
+                                "enum": [
+                                    "ALL_SUBNETS"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "advertisedIpRanges": {
+                            "description": "User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.",
+                            "items": {
+                                "description": "Description-tagged IP ranges for the router to advertise.",
+                                "properties": {
+                                    "description": {
+                                        "description": "User-specified description for the IP range.",
+                                        "type": "string"
+                                    },
+                                    "range": {
+                                        "description": "The IP range to advertise. The value must be a CIDR-formatted string.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "asn": {
+                            "description": "Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.",
+                            "format": "uint32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "bgpPeers": {
+                    "description": "BGP information that needs to be configured into the routing stack to establish the BGP peering. It must specify peer ASN and either interface name, IP, or peer IP. Please refer to RFC4273.",
+                    "items": {
+                        "properties": {
+                            "advertiseMode": {
+                                "description": "User-specified flag to indicate which mode to use for advertisement.",
+                                "enum": [
+                                    "CUSTOM",
+                                    "DEFAULT"
+                                ],
+                                "type": "string"
+                            },
+                            "advertisedGroups": {
+                                "description": "User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.",
+                                "items": {
+                                    "enum": [
+                                        "ALL_SUBNETS"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "advertisedIpRanges": {
+                                "description": "User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.",
+                                "items": {
+                                    "description": "Description-tagged IP ranges for the router to advertise.",
+                                    "properties": {
+                                        "description": {
+                                            "description": "User-specified description for the IP range.",
+                                            "type": "string"
+                                        },
+                                        "range": {
+                                            "description": "The IP range to advertise. The value must be a CIDR-formatted string.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "advertisedRoutePriority": {
+                                "description": "The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.",
+                                "format": "uint32",
+                                "type": "integer"
+                            },
+                            "interfaceName": {
+                                "description": "Name of the interface the BGP peer is associated with.",
+                                "type": "string"
+                            },
+                            "ipAddress": {
+                                "description": "IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.",
+                                "type": "string"
+                            },
+                            "managementType": {
+                                "description": "[Output Only] The resource that configures and manages this BGP peer. MANAGED_BY_USER is the default value and can be managed by you or other users; MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google will automatically create, update, and delete this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.",
+                                "enum": [
+                                    "MANAGED_BY_ATTACHMENT",
+                                    "MANAGED_BY_USER"
+                                ],
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.",
+                                "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                                "type": "string"
+                            },
+                            "peerAsn": {
+                                "description": "Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.",
+                                "format": "uint32",
+                                "type": "integer"
+                            },
+                            "peerIpAddress": {
+                                "description": "IP address of the BGP interface outside Google cloud. Only IPv4 is supported.",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "interfaces": {
+                    "description": "Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.",
+                    "items": {
+                        "properties": {
+                            "ipRange": {
+                                "description": "IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.",
+                                "type": "string"
+                            },
+                            "linkedInterconnectAttachment": {
+                                "description": "URI of the linked interconnect attachment. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.",
+                                "type": "string"
+                            },
+                            "linkedVpnTunnel": {
+                                "description": "URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.",
+                                "type": "string"
+                            },
+                            "managementType": {
+                                "description": "[Output Only] The resource that configures and manages this interface. MANAGED_BY_USER is the default value and can be managed by you or other users; MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google will automatically create, update, and delete this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted.",
+                                "enum": [
+                                    "MANAGED_BY_ATTACHMENT",
+                                    "MANAGED_BY_USER"
+                                ],
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.",
+                                "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "kind": {
+                    "default": "compute#router",
+                    "description": "[Output Only] Type of resource. Always compute#router for routers.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "nats": {
+                    "description": "A list of Nat services created in this router.",
+                    "items": {
+                        "description": "Represents a Nat resource. It enables the VMs within the specified subnetworks to access Internet without external IP addresses. It specifies a list of subnetworks (and the ranges within) that want to use NAT. Customers can also provide the external IPs that would be used for NAT. GCP would auto-allocate ephemeral IPs if no external IPs are provided.",
+                        "properties": {
+                            "icmpIdleTimeoutSec": {
+                                "description": "Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.",
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "minPortsPerVm": {
+                                "description": "Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This gets rounded up to the nearest power of 2. Eg. if the value of this field is 50, at least 64 ports will be allocated to a VM.",
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "name": {
+                                "description": "Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.",
+                                "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                                "type": "string"
+                            },
+                            "natIpAllocateOption": {
+                                "description": "Specify the NatIpAllocateOption. If it is AUTO_ONLY, then nat_ip should be empty.",
+                                "enum": [
+                                    "AUTO_ONLY",
+                                    "MANUAL_ONLY"
+                                ],
+                                "type": "string"
+                            },
+                            "natIps": {
+                                "description": "A list of URLs of the IP resources used for this Nat service. These IPs must be valid static external IP addresses assigned to the project. max_length is subject to change post alpha.",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "sourceSubnetworkIpRangesToNat": {
+                                "description": "Specify the Nat option. If this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.",
+                                "enum": [
+                                    "ALL_SUBNETWORKS_ALL_IP_RANGES",
+                                    "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES",
+                                    "LIST_OF_SUBNETWORKS"
+                                ],
+                                "type": "string"
+                            },
+                            "subnetworks": {
+                                "description": "A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.",
+                                "items": {
+                                    "description": "Defines the IP ranges that want to use NAT for a subnetwork.",
+                                    "properties": {
+                                        "name": {
+                                            "description": "URL for the subnetwork resource to use NAT.",
+                                            "type": "string"
+                                        },
+                                        "secondaryIpRangeNames": {
+                                            "description": "A list of the secondary ranges of the Subnetwork that are allowed to use NAT. This can be populated only if \"LIST_OF_SECONDARY_IP_RANGES\" is one of the values in source_ip_ranges_to_nat.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "sourceIpRangesToNat": {
+                                            "description": "Specify the options for NAT ranges in the Subnetwork. All usages of single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: [\"PRIMARY_IP_RANGE\", \"LIST_OF_SECONDARY_IP_RANGES\"] Default: [ALL_IP_RANGES]",
+                                            "items": {
+                                                "enum": [
+                                                    "ALL_IP_RANGES",
+                                                    "LIST_OF_SECONDARY_IP_RANGES",
+                                                    "PRIMARY_IP_RANGE"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "tcpEstablishedIdleTimeoutSec": {
+                                "description": "Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.",
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "tcpTransitoryIdleTimeoutSec": {
+                                "description": "Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.",
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "udpIdleTimeoutSec": {
+                                "description": "Timeout (in seconds) for UDP connections. Defaults to 30s if not set.",
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "network": {
+                    "description": "URI of the network to which this router belongs.",
+                    "type": "string"
+                },
+                "region": {
+                    "description": "[Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

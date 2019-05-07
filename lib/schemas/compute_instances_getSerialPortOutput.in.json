@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "instance": {
+            "required": true,
+            "type": "string"
+        },
+        "port": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "default": 1
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "start": {
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        }
+    }
+}

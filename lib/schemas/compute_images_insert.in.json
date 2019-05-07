@@ -1,0 +1,292 @@
+{
+    "type": "object",
+    "properties": {
+        "forceCreate": {
+            "type": "boolean"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An Image resource. (== resource_for beta.images ==) (== resource_for v1.images ==)",
+            "properties": {
+                "archiveSizeBytes": {
+                    "description": "Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).",
+                    "format": "int64",
+                    "type": "string"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "deprecated": {
+                    "description": "The deprecation status associated with this image.",
+                    "properties": {
+                        "deleted": {
+                            "description": "An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.",
+                            "type": "string"
+                        },
+                        "deprecated": {
+                            "description": "An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.",
+                            "type": "string"
+                        },
+                        "obsolete": {
+                            "description": "An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.",
+                            "type": "string"
+                        },
+                        "replacement": {
+                            "description": "The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.",
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "The deprecation state of this resource. This can be ACTIVE DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.",
+                            "enum": [
+                                "ACTIVE",
+                                "DELETED",
+                                "DEPRECATED",
+                                "OBSOLETE"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "diskSizeGb": {
+                    "description": "Size of the image when restored onto a persistent disk (in GB).",
+                    "format": "int64",
+                    "type": "string"
+                },
+                "family": {
+                    "description": "The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.",
+                    "type": "string"
+                },
+                "guestOsFeatures": {
+                    "description": "A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.",
+                    "items": {
+                        "description": "Guest OS features.",
+                        "properties": {
+                            "type": {
+                                "description": "The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.",
+                                "enum": [
+                                    "FEATURE_TYPE_UNSPECIFIED",
+                                    "MULTI_IP_SUBNET",
+                                    "SECURE_BOOT",
+                                    "UEFI_COMPATIBLE",
+                                    "VIRTIO_SCSI_MULTIQUEUE",
+                                    "WINDOWS"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "imageEncryptionKey": {
+                    "description": "Encrypts the image using a customer-supplied encryption key.\n\nAfter you encrypt an image with a customer-supplied key, you must provide the same key if you use the image later (e.g. to create a disk from the image).\n\nCustomer-supplied encryption keys do not protect access to metadata of the disk.\n\nIf you do not provide an encryption key when creating the image, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the image later.",
+                    "properties": {
+                        "kmsKeyName": {
+                            "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                            "type": "string"
+                        },
+                        "rawKey": {
+                            "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                            "type": "string"
+                        },
+                        "sha256": {
+                            "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "kind": {
+                    "default": "compute#image",
+                    "description": "[Output Only] Type of the resource. Always compute#image for images.",
+                    "type": "string"
+                },
+                "labelFingerprint": {
+                    "description": "A fingerprint for the labels being applied to this image, which is essentially a hash of the labels used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to retrieve an image.",
+                    "format": "byte",
+                    "type": "string"
+                },
+                "labels": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Labels to apply to this image. These can be later modified by the setLabels method.",
+                    "type": "object"
+                },
+                "licenseCodes": {
+                    "description": "Integer license codes indicating which licenses are attached to this image.",
+                    "items": {
+                        "format": "int64",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "licenses": {
+                    "description": "Any applicable license URI.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "rawDisk": {
+                    "description": "The parameters of the raw disk image.",
+                    "properties": {
+                        "containerType": {
+                            "description": "The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.",
+                            "enum": [
+                                "TAR"
+                            ],
+                            "type": "string"
+                        },
+                        "sha1Checksum": {
+                            "description": "An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.",
+                            "pattern": "[a-f0-9]{40}",
+                            "type": "string"
+                        },
+                        "source": {
+                            "description": "The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "sourceDisk": {
+                    "description": "URL of the source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk \n- projects/project/zones/zone/disks/disk \n- zones/zone/disks/disk",
+                    "type": "string"
+                },
+                "sourceDiskEncryptionKey": {
+                    "description": "The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.",
+                    "properties": {
+                        "kmsKeyName": {
+                            "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                            "type": "string"
+                        },
+                        "rawKey": {
+                            "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                            "type": "string"
+                        },
+                        "sha256": {
+                            "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sourceDiskId": {
+                    "description": "[Output Only] The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.",
+                    "type": "string"
+                },
+                "sourceImage": {
+                    "description": "URL of the source image used to create this image. This can be a full or valid partial URL. You must provide exactly one of:  \n- this property, or  \n- the rawDisk.source property, or  \n- the sourceDisk property   in order to create an image.",
+                    "type": "string"
+                },
+                "sourceImageEncryptionKey": {
+                    "description": "The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.",
+                    "properties": {
+                        "kmsKeyName": {
+                            "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                            "type": "string"
+                        },
+                        "rawKey": {
+                            "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                            "type": "string"
+                        },
+                        "sha256": {
+                            "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sourceImageId": {
+                    "description": "[Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.",
+                    "type": "string"
+                },
+                "sourceSnapshot": {
+                    "description": "URL of the source snapshot used to create this image. This can be a full or valid partial URL. You must provide exactly one of:  \n- this property, or  \n- the sourceImage property, or  \n- the rawDisk.source property, or  \n- the sourceDisk property   in order to create an image.",
+                    "type": "string"
+                },
+                "sourceSnapshotEncryptionKey": {
+                    "description": "The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.",
+                    "properties": {
+                        "kmsKeyName": {
+                            "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                            "type": "string"
+                        },
+                        "rawKey": {
+                            "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                            "type": "string"
+                        },
+                        "sha256": {
+                            "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sourceSnapshotId": {
+                    "description": "[Output Only] The ID value of the snapshot used to create this image. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given snapshot name.",
+                    "type": "string"
+                },
+                "sourceType": {
+                    "default": "RAW",
+                    "description": "The type of the image used to create this disk. The default and only value is RAW",
+                    "enum": [
+                        "RAW"
+                    ],
+                    "type": "string"
+                },
+                "status": {
+                    "description": "[Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.",
+                    "enum": [
+                        "DELETING",
+                        "FAILED",
+                        "PENDING",
+                        "READY"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

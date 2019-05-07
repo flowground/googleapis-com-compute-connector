@@ -1,0 +1,224 @@
+{
+    "type": "object",
+    "properties": {
+        "interconnect": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents an Interconnects resource. The Interconnects resource is a dedicated connection between Google's network and your on-premises network. For more information, see the  Dedicated overview page. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)",
+            "properties": {
+                "adminEnabled": {
+                    "description": "Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.",
+                    "type": "boolean"
+                },
+                "circuitInfos": {
+                    "description": "[Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.",
+                    "items": {
+                        "description": "Describes a single physical circuit between the Customer and Google. CircuitInfo objects are created by Google, so all fields are output only. Next id: 4",
+                        "properties": {
+                            "customerDemarcId": {
+                                "description": "Customer-side demarc ID for this circuit.",
+                                "type": "string"
+                            },
+                            "googleCircuitId": {
+                                "description": "Google-assigned unique ID for this circuit. Assigned at circuit turn-up.",
+                                "type": "string"
+                            },
+                            "googleDemarcId": {
+                                "description": "Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "customerName": {
+                    "description": "Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "expectedOutages": {
+                    "description": "[Output Only] A list of outages expected for this Interconnect.",
+                    "items": {
+                        "description": "Description of a planned outage on this Interconnect. Next id: 9",
+                        "properties": {
+                            "affectedCircuits": {
+                                "description": "If issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "description": {
+                                "description": "A description about the purpose of the outage.",
+                                "type": "string"
+                            },
+                            "endTime": {
+                                "description": "Scheduled end time for the outage (milliseconds since Unix epoch).",
+                                "format": "int64",
+                                "type": "string"
+                            },
+                            "issueType": {
+                                "description": "Form this outage is expected to take. Note that the \"IT_\" versions of this enum have been deprecated in favor of the unprefixed values.",
+                                "enum": [
+                                    "IT_OUTAGE",
+                                    "IT_PARTIAL_OUTAGE",
+                                    "OUTAGE",
+                                    "PARTIAL_OUTAGE"
+                                ],
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "Unique identifier for this outage notification.",
+                                "type": "string"
+                            },
+                            "source": {
+                                "description": "The party that generated this notification. Note that \"NSRC_GOOGLE\" has been deprecated in favor of \"GOOGLE\"",
+                                "enum": [
+                                    "GOOGLE",
+                                    "NSRC_GOOGLE"
+                                ],
+                                "type": "string"
+                            },
+                            "startTime": {
+                                "description": "Scheduled start time for the outage (milliseconds since Unix epoch).",
+                                "format": "int64",
+                                "type": "string"
+                            },
+                            "state": {
+                                "description": "State of this notification. Note that the \"NS_\" versions of this enum have been deprecated in favor of the unprefixed values.",
+                                "enum": [
+                                    "ACTIVE",
+                                    "CANCELLED",
+                                    "NS_ACTIVE",
+                                    "NS_CANCELED"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "googleIpAddress": {
+                    "description": "[Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.",
+                    "type": "string"
+                },
+                "googleReferenceId": {
+                    "description": "[Output Only] Google reference ID to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "interconnectAttachments": {
+                    "description": "[Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "interconnectType": {
+                    "description": "Type of interconnect. Note that \"IT_PRIVATE\" has been deprecated in favor of \"DEDICATED\"",
+                    "enum": [
+                        "DEDICATED",
+                        "IT_PRIVATE",
+                        "PARTNER"
+                    ],
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#interconnect",
+                    "description": "[Output Only] Type of the resource. Always compute#interconnect for interconnects.",
+                    "type": "string"
+                },
+                "linkType": {
+                    "description": "Type of link requested. This field indicates speed of each of the links in the bundle, not the entire bundle.",
+                    "enum": [
+                        "LINK_TYPE_ETHERNET_10G_LR"
+                    ],
+                    "type": "string"
+                },
+                "location": {
+                    "description": "URL of the InterconnectLocation object that represents where this connection is to be provisioned.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "nocContactEmail": {
+                    "description": "Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.",
+                    "type": "string"
+                },
+                "operationalStatus": {
+                    "description": "[Output Only] The current status of whether or not this Interconnect is functional.",
+                    "enum": [
+                        "OS_ACTIVE",
+                        "OS_UNPROVISIONED"
+                    ],
+                    "type": "string"
+                },
+                "peerIpAddress": {
+                    "description": "[Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.",
+                    "type": "string"
+                },
+                "provisionedLinkCount": {
+                    "description": "[Output Only] Number of links actually provisioned in this interconnect.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "requestedLinkCount": {
+                    "description": "Target number of physical links in the link bundle, as requested by the customer.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "[Output Only] The current state of whether or not this Interconnect is functional.",
+                    "enum": [
+                        "ACTIVE",
+                        "UNPROVISIONED"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

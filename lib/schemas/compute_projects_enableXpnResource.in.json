@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "xpnResource": {
+                    "description": "Service resource (a.k.a service project) ID.",
+                    "properties": {
+                        "id": {
+                            "description": "The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The type of the service resource.",
+                            "enum": [
+                                "PROJECT",
+                                "XPN_RESOURCE_TYPE_UNSPECIFIED"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

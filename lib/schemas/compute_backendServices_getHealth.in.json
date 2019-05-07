@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "backendService": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "group": {
+                    "description": "A URI referencing one of the instance groups or network endpoint groups listed in the backend service.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "region": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "VPN tunnel resource. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)",
+            "properties": {
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in RFC3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "detailedStatus": {
+                    "description": "[Output Only] Detailed status message for the VPN tunnel.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "ikeVersion": {
+                    "description": "IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "kind": {
+                    "default": "compute#vpnTunnel",
+                    "description": "[Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.",
+                    "type": "string"
+                },
+                "localTrafficSelector": {
+                    "description": "Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "peerIp": {
+                    "description": "IP address of the peer VPN gateway. Only IPv4 is supported.",
+                    "type": "string"
+                },
+                "region": {
+                    "description": "[Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.",
+                    "type": "string"
+                },
+                "remoteTrafficSelector": {
+                    "description": "Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "router": {
+                    "description": "URL of the router resource to be used for dynamic routing.",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "sharedSecret": {
+                    "description": "Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.",
+                    "type": "string"
+                },
+                "sharedSecretHash": {
+                    "description": "Hash of the shared secret.",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "[Output Only] The status of the VPN tunnel, which can be one of the following: \n- PROVISIONING: Resource is being allocated for the VPN tunnel. \n- WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. \n- FIRST_HANDSHAKE: Successful first handshake with the peer VPN. \n- ESTABLISHED: Secure session is successfully established with the peer VPN. \n- NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS \n- AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). \n- NEGOTIATION_FAILURE: Handshake failed. \n- DEPROVISIONING: Resources are being deallocated for the VPN tunnel. \n- FAILED: Tunnel creation has failed and the tunnel is not ready to be used.",
+                    "enum": [
+                        "ALLOCATING_RESOURCES",
+                        "AUTHORIZATION_ERROR",
+                        "DEPROVISIONING",
+                        "ESTABLISHED",
+                        "FAILED",
+                        "FIRST_HANDSHAKE",
+                        "NEGOTIATION_FAILURE",
+                        "NETWORK_ERROR",
+                        "NO_INCOMING_PACKETS",
+                        "PROVISIONING",
+                        "REJECTED",
+                        "WAITING_FOR_FULL_CONFIG"
+                    ],
+                    "type": "string"
+                },
+                "targetVpnGateway": {
+                    "description": "URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

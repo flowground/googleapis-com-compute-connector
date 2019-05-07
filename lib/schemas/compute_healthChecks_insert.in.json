@@ -1,0 +1,255 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An HealthCheck resource. This resource defines a template for how individual virtual machines should be checked for health, via one of the supported protocols.",
+            "properties": {
+                "checkIntervalSec": {
+                    "description": "How often (in seconds) to send a health check. The default value is 5 seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "creationTimestamp": {
+                    "description": "[Output Only] Creation timestamp in 3339 text format.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "healthyThreshold": {
+                    "description": "A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "http2HealthCheck": {
+                    "properties": {
+                        "host": {
+                            "description": "The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "description": "Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.",
+                            "type": "string"
+                        },
+                        "proxyHeader": {
+                            "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",
+                            "enum": [
+                                "NONE",
+                                "PROXY_V1"
+                            ],
+                            "type": "string"
+                        },
+                        "requestPath": {
+                            "description": "The request path of the HTTP/2 health check request. The default value is /.",
+                            "type": "string"
+                        },
+                        "response": {
+                            "description": "The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "httpHealthCheck": {
+                    "properties": {
+                        "host": {
+                            "description": "The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "description": "Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.",
+                            "type": "string"
+                        },
+                        "proxyHeader": {
+                            "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",
+                            "enum": [
+                                "NONE",
+                                "PROXY_V1"
+                            ],
+                            "type": "string"
+                        },
+                        "requestPath": {
+                            "description": "The request path of the HTTP health check request. The default value is /.",
+                            "type": "string"
+                        },
+                        "response": {
+                            "description": "The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "httpsHealthCheck": {
+                    "properties": {
+                        "host": {
+                            "description": "The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "description": "Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.",
+                            "type": "string"
+                        },
+                        "proxyHeader": {
+                            "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",
+                            "enum": [
+                                "NONE",
+                                "PROXY_V1"
+                            ],
+                            "type": "string"
+                        },
+                        "requestPath": {
+                            "description": "The request path of the HTTPS health check request. The default value is /.",
+                            "type": "string"
+                        },
+                        "response": {
+                            "description": "The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "id": {
+                    "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
+                    "format": "uint64",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#healthCheck",
+                    "description": "Type of the resource.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                    "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                    "type": "string"
+                },
+                "selfLink": {
+                    "description": "[Output Only] Server-defined URL for the resource.",
+                    "type": "string"
+                },
+                "sslHealthCheck": {
+                    "properties": {
+                        "port": {
+                            "description": "The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "description": "Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.",
+                            "type": "string"
+                        },
+                        "proxyHeader": {
+                            "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",
+                            "enum": [
+                                "NONE",
+                                "PROXY_V1"
+                            ],
+                            "type": "string"
+                        },
+                        "request": {
+                            "description": "The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.",
+                            "type": "string"
+                        },
+                        "response": {
+                            "description": "The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "tcpHealthCheck": {
+                    "properties": {
+                        "port": {
+                            "description": "The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "portName": {
+                            "description": "Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.",
+                            "type": "string"
+                        },
+                        "proxyHeader": {
+                            "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",
+                            "enum": [
+                                "NONE",
+                                "PROXY_V1"
+                            ],
+                            "type": "string"
+                        },
+                        "request": {
+                            "description": "The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.",
+                            "type": "string"
+                        },
+                        "response": {
+                            "description": "The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "timeoutSec": {
+                    "description": "How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.",
+                    "enum": [
+                        "HTTP",
+                        "HTTP2",
+                        "HTTPS",
+                        "INVALID",
+                        "SSL",
+                        "TCP"
+                    ],
+                    "type": "string"
+                },
+                "unhealthyThreshold": {
+                    "description": "A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

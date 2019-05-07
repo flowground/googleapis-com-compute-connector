@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "urlMap": {
+            "required": true,
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "host": {
+                    "description": "If set, this invalidation rule will only apply to requests with a Host header matching host.",
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

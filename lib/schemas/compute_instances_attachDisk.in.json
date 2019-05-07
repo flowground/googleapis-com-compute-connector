@@ -1,0 +1,184 @@
+{
+    "type": "object",
+    "properties": {
+        "forceAttach": {
+            "type": "boolean"
+        },
+        "instance": {
+            "required": true,
+            "type": "string"
+        },
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "zone": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An instance-attached disk resource.",
+            "properties": {
+                "autoDelete": {
+                    "description": "Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).",
+                    "type": "boolean"
+                },
+                "boot": {
+                    "description": "Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.",
+                    "type": "boolean"
+                },
+                "deviceName": {
+                    "description": "Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.\n\nIf not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.",
+                    "type": "string"
+                },
+                "diskEncryptionKey": {
+                    "description": "Encrypts or decrypts a disk using a customer-supplied encryption key.\n\nIf you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.\n\nIf you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.\n\nIf you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.\n\nInstance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.",
+                    "properties": {
+                        "kmsKeyName": {
+                            "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                            "type": "string"
+                        },
+                        "rawKey": {
+                            "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                            "type": "string"
+                        },
+                        "sha256": {
+                            "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "guestOsFeatures": {
+                    "description": "A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.",
+                    "items": {
+                        "description": "Guest OS features.",
+                        "properties": {
+                            "type": {
+                                "description": "The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.",
+                                "enum": [
+                                    "FEATURE_TYPE_UNSPECIFIED",
+                                    "MULTI_IP_SUBNET",
+                                    "SECURE_BOOT",
+                                    "UEFI_COMPATIBLE",
+                                    "VIRTIO_SCSI_MULTIQUEUE",
+                                    "WINDOWS"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "index": {
+                    "description": "[Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "initializeParams": {
+                    "description": "[Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.\n\nThis property is mutually exclusive with the source property; you can only define one or the other, but not both.",
+                    "properties": {
+                        "description": {
+                            "description": "An optional description. Provide this property when creating the disk.",
+                            "type": "string"
+                        },
+                        "diskName": {
+                            "description": "Specifies the disk name. If not specified, the default is to use the name of the instance. If the disk with the instance name exists already in the given zone/region, a new name will be automatically generated.",
+                            "type": "string"
+                        },
+                        "diskSizeGb": {
+                            "description": "Specifies the size of the disk in base-2 GB.",
+                            "format": "int64",
+                            "type": "string"
+                        },
+                        "diskType": {
+                            "description": "Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:\nhttps://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard\n\n\nOther values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:  \n- https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType \n- projects/project/zones/zone/diskTypes/diskType \n- zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.",
+                            "type": "string"
+                        },
+                        "labels": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.",
+                            "type": "object"
+                        },
+                        "sourceImage": {
+                            "description": "The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.\n\nTo create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image:\nprojects/debian-cloud/global/images/family/debian-9\n\n\nAlternatively, use a specific version of a public operating system image:\nprojects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD\n\n\nTo create a disk with a custom image that you created, specify the image name in the following format:\nglobal/images/my-custom-image\n\n\nYou can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:\nglobal/images/family/my-image-family\n\n\nIf the source image is deleted later, this field will not be set.",
+                            "type": "string"
+                        },
+                        "sourceImageEncryptionKey": {
+                            "description": "The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.\n\nInstance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.",
+                            "properties": {
+                                "kmsKeyName": {
+                                    "description": "The name of the encryption key that is stored in Google Cloud KMS.",
+                                    "type": "string"
+                                },
+                                "rawKey": {
+                                    "description": "Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.",
+                                    "type": "string"
+                                },
+                                "sha256": {
+                                    "description": "[Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "interface": {
+                    "description": "Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.",
+                    "enum": [
+                        "NVME",
+                        "SCSI"
+                    ],
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#attachedDisk",
+                    "description": "[Output Only] Type of the resource. Always compute#attachedDisk for attached disks.",
+                    "type": "string"
+                },
+                "licenses": {
+                    "description": "[Output Only] Any valid publicly visible licenses.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "mode": {
+                    "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.",
+                    "enum": [
+                        "READ_ONLY",
+                        "READ_WRITE"
+                    ],
+                    "type": "string"
+                },
+                "source": {
+                    "description": "Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required except for local SSD.\n\nIf desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.\n\nNote that for InstanceTemplate, specify the disk name, not the URL for the disk.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.",
+                    "enum": [
+                        "PERSISTENT",
+                        "SCRATCH"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

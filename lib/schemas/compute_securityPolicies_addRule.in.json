@@ -1,0 +1,83 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "required": true,
+            "type": "string"
+        },
+        "securityPolicy": {
+            "required": true,
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "userIp": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a rule that describes one or more match conditions along with the action to be taken when traffic matches this condition (allow or deny).",
+            "properties": {
+                "action": {
+                    "description": "The Action to preform when the client connection triggers the rule. Can currently be either \"allow\" or \"deny()\" where valid values for status are 403, 404, and 502.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "An optional description of this resource. Provide this property when you create the resource.",
+                    "type": "string"
+                },
+                "kind": {
+                    "default": "compute#securityPolicyRule",
+                    "description": "[Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules",
+                    "type": "string"
+                },
+                "match": {
+                    "description": "A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced.",
+                    "properties": {
+                        "config": {
+                            "description": "The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.",
+                            "properties": {
+                                "srcIpRanges": {
+                                    "description": "CIDR IP address range.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "versionedExpr": {
+                            "description": "Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.",
+                            "enum": [
+                                "SRC_IPS_V1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "preview": {
+                    "description": "If set to true, the specified action is not enforced.",
+                    "type": "boolean"
+                },
+                "priority": {
+                    "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
